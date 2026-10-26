@@ -20,5 +20,5 @@
 | 判断硬编码值是否提取为常量 | `gt-constant-extraction` |
 | 所有用户可见回复 | `gt-output-style` |
 
-多个场景可以同时适用。项目专属 skill（例如 `gooq-development`）安装后补进项目自己的 CLAUDE.md 路由。
+多个场景可以同时适用。项目专属 skill 安装后补进项目自己的 CLAUDE.md 路由。
 
