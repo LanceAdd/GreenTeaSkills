@@ -2,10 +2,11 @@
 name: gt-framework-design
 description: >-
   How to design caller-facing frameworks, libraries, SDKs, DSLs, CLIs, and
-  shared APIs: state the usage contract, validate only silent data risks, fail
-  closed on missing required inputs, and never compensate for misuse. MUST use
-  when designing a caller-facing boundary or adding validation, fallback, or
-  misuse handling. An explicit opt-out is part of the usage, not a repair.
+  shared APIs: state the usage contract, validate based on misuse consequence
+  and failure timing, fail closed on missing required inputs, and never
+  compensate for misuse. MUST use when designing a caller-facing boundary or
+  adding validation, fallback, or misuse handling. An explicit opt-out is part
+  of the usage, not a repair.
 ---
 
 # 怎么设计给别人用的框架或工具
@@ -21,12 +22,14 @@ description: >-
 
 ## 什么时候加校验或兜底
 
-1. 业务决定 → 约定 + 文档，调用方负责，代码不猜。
-2. 写错会静默写坏数据，且能静态判定 → 代码检查，失败关闭。
-3. 平台、编译器或数据库会报 → 不重复校验。
-4. 只是少写一次调用，或“感觉更安全” → 不加。
+先判断误用的后果和归属：
 
-缺失必需输入时失败关闭，不猜默认值。显式 opt-out 属于用法，不是兜底。
+- 静默产生错误结果或数据损坏 → 默认值得代码强制。
+- 立刻、明显、可诊断地失败 → 默认不重复校验；如果失败发生在副作用之后，或错误难以诊断，可以提前检查。
+- 属于调用方的业务策略 → 写进约定和文档，不替调用方决定。
+- 下层（编译器、平台、存储）会拒绝 → 默认不重复；同样只在失败晚于副作用或难以诊断时提前检查。
+
+只是少写一次调用或“感觉更安全”的检查不加。缺失必需输入时失败关闭，不猜默认值。
 
 ## 判断一个分支该不该写
 
