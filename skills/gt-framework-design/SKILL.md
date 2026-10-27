@@ -7,7 +7,10 @@ description: >-
   compensate for misuse. MUST use when designing, implementing, or changing a
   caller-facing framework, library, SDK, DSL, CLI, or shared API, even when the
   user never mentions framework design, validation, or fallback. An explicit
-  opt-out is part of the usage, not a repair.
+  opt-out is part of the usage, not a repair. Does not apply to internal
+  application policy unless it is itself a caller-facing contract. Validate
+  when misuse would silently corrupt data or fail after a side effect; fail
+  closed on missing required inputs.
 ---
 
 # 怎么设计给别人用的框架或工具
@@ -19,7 +22,7 @@ description: >-
 3. 准备加判断、兜底、静默替换或失败分支时，先问：它属于约定用法，还是在给违约安排结果？后者不做。
 4. 过程性质看一次返回值证明不了，就留在用法说明里：每次调用产生新值、足够熵、保持顺序等。
 5. 显式放弃是用法的一部分。传 nil 或文档写明的空值表示仍用原有行为；这不是对不合格结果的补救。
-6. 违约可以得出简陋甚至错误的结果。不要再发明一种“正确”把违约掩盖掉。
+6. 违约可以得出简陋甚至错误的结果。不要再发明一种“正确”把违约掩盖掉。静默损坏或副作用之后才失败的，按下一节校验；缺必需输入就失败关闭。
 
 ## 什么时候加校验或兜底
 

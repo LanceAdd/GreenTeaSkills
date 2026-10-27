@@ -5,11 +5,14 @@ description: >-
   reviewing, comparing options, or reporting progress, even when the user never mentions
   style or output. Do this: state the conclusion in one or two sentences; pair every
   path/file.go:123 with the key code snippet immediately after it — a line number alone
-  is not evidence; use a diff or side-by-side snippet for comparisons. This is an agent
-  procedure, not a tutorial to explain to the user.
+  is not evidence; use a diff or side-by-side snippet for comparisons. If there is
+  no code to cite, give the conclusion and say what was not verified. Do not invent
+  a snippet. This is an agent procedure, not a tutorial to explain to the user.
 ---
 
 # 怎么回复
+
+用户在本次对话里明确要求的格式优先；其余可见回复按本技能写。
 
 先做这三步，再写正文。
 

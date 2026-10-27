@@ -3,11 +3,12 @@ name: gt-change-hygiene
 description: >-
   How to iterate on a change and respond to review feedback without carrying history or
   drift. MUST use when changing existing behavior, answering review comments, cleaning
-  up a diff, or writing compatibility or migration code, even when the user never
-  mentions compatibility or history. Do this: check whether the old behavior was ever
-  released before writing any compatibility code or special-case rejection; for
-  unreleased behavior, restore the previous baseline and keep the source in its final
-  state; define each cross-layer rule once; keep each tag value semantically orthogonal;
+  up a diff, writing compatibility or migration code, or when one input is interpreted
+  by more than one layer, even when the user never mentions compatibility or history.
+  Do this: check whether the old behavior was ever released before writing any
+  compatibility code or special-case rejection; for unreleased behavior, delete
+  superseded intermediate branches, flags, and tests, and keep only the final design;
+  define each cross-layer rule once; keep each tag value semantically orthogonal;
   verify a review's premises before accepting its conclusions. This is an agent
   procedure, not a tutorial to explain to the user.
 ---
@@ -17,7 +18,7 @@ description: >-
 先判定这个改动对外存在过没有，再决定要不要兼容、要不要留痕。最终源码只呈现最终设计。
 
 1. 查发布线：这个行为进过 release 吗？从哪个版本开始？谁可能依赖？
-2. 没发过，就当内部中间态：恢复上一版的基线行为，直接改成最终形态。不写迁移层，不为它加特殊拒绝，不在注释或测试里写「旧值」「旧行为」。
+2. 没发过的中间形态不是兼容基线。源码只留最终设计；被最终设计取代的分支、标记和测试删掉。不写迁移层，不为中间形态加特殊拒绝，不在注释或测试里写「旧值」「旧行为」。
 3. 没发过，就把旧标记还原成普通输入：它只是不再有特殊含义，和其他未识别的值一样处理，不单独开分支。
 4. 发过版，才需要兼容：写清楚影响窗口、受影响用户和回退方式，兼容代码本身也要有测试。
 5. 同一条规则只定义一次：同一输入被两层以上解释时（校验/文档生成、客户端/服务端、解析/序列化），用命名常量加共享校验收口，两边都测。默认会漂移，对齐是工程动作。

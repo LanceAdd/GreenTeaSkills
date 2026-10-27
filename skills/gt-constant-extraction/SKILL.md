@@ -4,7 +4,8 @@ description: >-
   How to handle hardcoded strings and numbers while writing or reviewing code, then where to
   put a constant and what to name it. MUST use when writing, editing, or reviewing code that
   adds or repeats a string or number literal, even when the user never mentions magic values,
-  constants, or duplicate strings. Do this: extract only when at least two of these are true — multiple
+  constants, or duplicate strings. Do this: skip literals in tests, imports, comments,
+  and generated code. Extract only when at least two of these are true — multiple
   sites must stay identical, a typo would hide a bug, the literal hides its meaning — and
   the sites must not diverge later. Prefer an existing constant. Do not extract one-off
   logs, error text, or standard values such as HTTP methods and date layouts. This is an
@@ -38,7 +39,7 @@ description: >-
 ## 价值
 
 - 高：真实契约且有漂移风险；字节敏感；公开词汇；策略魔法数；已有常量可复用。直接做。
-- 中：单处重复且命名有明确收益；跨文件但自解释、风险低。先向用户确认再动。
+- 中：单处重复且命名有明确收益；跨文件但自解释、风险低。做内联测试，改回字面量后代码明显变差才提取。
 - 低：单次使用；同处一两次；标准惯用值；展示、日志、错误文案；标签或注解；局部哨兵；相邻表里的稳定重复。不动。
 - 不做：把简单查找表做成枚举或注册表；为了「更准确」重命名已有标识符。
 
