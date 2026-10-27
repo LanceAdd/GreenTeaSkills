@@ -4,9 +4,10 @@ description: >-
   How to design caller-facing frameworks, libraries, SDKs, DSLs, CLIs, and
   shared APIs: state the usage contract, validate based on misuse consequence
   and failure timing, fail closed on missing required inputs, and never
-  compensate for misuse. MUST use when designing a caller-facing boundary or
-  adding validation, fallback, or misuse handling. An explicit opt-out is part
-  of the usage, not a repair.
+  compensate for misuse. MUST use when designing, implementing, or changing a
+  caller-facing framework, library, SDK, DSL, CLI, or shared API, even when the
+  user never mentions framework design, validation, or fallback. An explicit
+  opt-out is part of the usage, not a repair.
 ---
 
 # 怎么设计给别人用的框架或工具

@@ -1,10 +1,10 @@
 ---
 name: gt-constant-extraction
 description: >-
-  How to decide whether a hardcoded string or number becomes a constant, then where to
-  put it and what to name it. MUST use when writing or reviewing Go, when a diff adds or
-  repeats string or number literals, or when the user mentions magic values, constants,
-  or duplicate strings. Do this: extract only when at least two of these are true — multiple
+  How to handle hardcoded strings and numbers while writing or reviewing code, then where to
+  put a constant and what to name it. MUST use when writing, editing, or reviewing code that
+  adds or repeats a string or number literal, even when the user never mentions magic values,
+  constants, or duplicate strings. Do this: extract only when at least two of these are true — multiple
   sites must stay identical, a typo would hide a bug, the literal hides its meaning — and
   the sites must not diverge later. Prefer an existing constant. Do not extract one-off
   logs, error text, or standard values such as HTTP methods and date layouts. This is an

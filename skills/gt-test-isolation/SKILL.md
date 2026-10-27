@@ -3,8 +3,9 @@ name: gt-test-isolation
 description: >-
   How to keep tests isolated and readable: each test owns its state, scenario
   setup and assertions stay local, and shared helpers are limited to environment
-  contracts and stateless mechanics. MUST use when writing, refactoring, or
-  reviewing tests. Do this: keep arrange/act/assert visible; never share mutable
+  contracts and stateless mechanics. MUST use when writing, editing, refactoring,
+  or reviewing tests, even when the user never mentions isolation, fixtures, or
+  helpers. Do this: keep arrange/act/assert visible; never share mutable
   fixtures, global state, or a common test harness across modules; duplicate
   scenario code rather than coupling tests.
 ---
