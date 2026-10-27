@@ -4,8 +4,9 @@ description: >-
   How to keep code shape explicit and minimal: remove indirection that adds no
   semantics, keep file names aligned with their responsibilities, and share
   helpers only for a stated contract. MUST use when adding or removing helpers
-  or abstractions, splitting or merging files, or reviewing code structure.
-  Leave constants to gt-constant-extraction.
+  or abstractions, splitting or merging files, reviewing code structure, or
+  adding, keeping, or removing a comment while writing, editing, or reviewing
+  code. Leave constants to gt-constant-extraction.
 ---
 
 # 怎么保持代码形状

@@ -16,7 +16,7 @@
 | 设计给调用方的框架、库、SDK、DSL、CLI 或共享 API | `gt-framework-design` |
 | 回改未发版改动、回应 review、判断兼容性 | `gt-change-hygiene` |
 | 写或评审测试，处理测试隔离与复用 | `gt-test-isolation` |
-| 增加/删除 helper、拆分文件、决定注释 | `gt-code-shape` |
+| 增加/删除 helper、拆分文件、编写或审阅代码中的注释 | `gt-code-shape` |
 | 判断硬编码值是否提取为常量 | `gt-constant-extraction` |
 | 所有用户可见回复 | `gt-output-style` |
 
