@@ -2,15 +2,15 @@
 name: gt-change-hygiene
 description: >-
   How to iterate on a change and respond to review feedback without carrying history or
-  drift. MUST use when changing existing behavior, answering review comments, cleaning
-  up a diff, writing compatibility or migration code, or when one input is interpreted
-  by more than one layer, even when the user never mentions compatibility or history.
-  Do this: check whether the old behavior was ever released before writing any
-  compatibility code or special-case rejection; for unreleased behavior, delete
-  superseded intermediate branches, flags, and tests, and keep only the final design;
-  define each cross-layer rule once; keep each tag value semantically orthogonal;
-  verify a review's premises before accepting its conclusions. This is an agent
-  procedure, not a tutorial to explain to the user.
+  drift. MUST use when editing existing code, answering review comments, or touching a
+  value, tag, parser, serializer, or validation that another layer also interprets,
+  even when the user never mentions compatibility or history. Do this: before writing
+  compatibility code or a special-case rejection, check whether the old behavior was
+  ever released; after the edit, review the diff and delete unreleased intermediate
+  branches, flags, tests, and historical comments; keep only the final design; define
+  each cross-layer rule once; keep each tag value semantically orthogonal; verify a
+  review's premises before accepting its conclusions. This is an agent procedure, not
+  a tutorial to explain to the user.
 ---
 
 # 怎么回改一个改动

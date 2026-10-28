@@ -5,12 +5,15 @@ description: >-
   shared APIs: state the usage contract, validate based on misuse consequence
   and failure timing, fail closed on missing required inputs, and never
   compensate for misuse. MUST use when designing, implementing, or changing a
-  caller-facing framework, library, SDK, DSL, CLI, or shared API, even when the
-  user never mentions framework design, validation, or fallback. An explicit
-  opt-out is part of the usage, not a repair. Does not apply to internal
-  application policy unless it is itself a caller-facing contract. Validate
-  when misuse would silently corrupt data or fail after a side effect; fail
-  closed on missing required inputs.
+  caller-facing framework, library, SDK, DSL, CLI, or shared API, and when
+  adding or changing a default, fallback, silent replacement, or validation
+  branch on that path, even when the user never mentions framework design,
+  validation, or fallback. After the edit, review those branches in the diff
+  and keep one only when the usage contract requires it. An explicit opt-out
+  is part of the usage, not a repair. Does not apply to internal application
+  policy unless it is itself a caller-facing contract. Validate when misuse
+  would silently corrupt data or fail after a side effect; fail closed on
+  missing required inputs.
 ---
 
 # 怎么设计给别人用的框架或工具
@@ -23,6 +26,7 @@ description: >-
 4. 过程性质看一次返回值证明不了，就留在用法说明里：每次调用产生新值、足够熵、保持顺序等。
 5. 显式放弃是用法的一部分。传 nil 或文档写明的空值表示仍用原有行为；这不是对不合格结果的补救。
 6. 违约可以得出简陋甚至错误的结果。不要再发明一种“正确”把违约掩盖掉。静默损坏或副作用之后才失败的，按下一节校验；缺必需输入就失败关闭。
+7. 改完审查 diff 里的默认值、兜底、静默替换和校验分支。约定用法不需要的，删掉。
 
 ## 什么时候加校验或兜底
 

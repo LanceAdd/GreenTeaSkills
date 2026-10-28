@@ -3,20 +3,21 @@ name: gt-constant-extraction
 description: >-
   How to handle hardcoded strings and numbers while writing or reviewing code, then where to
   put a constant and what to name it. MUST use when writing, editing, or reviewing code that
-  adds or repeats a string or number literal, even when the user never mentions magic values,
-  constants, or duplicate strings. Do this: skip literals in tests, imports, comments,
-  and generated code. Extract only when at least two of these are true — multiple
-  sites must stay identical, a typo would hide a bug, the literal hides its meaning — and
-  the sites must not diverge later. Prefer an existing constant. Do not extract one-off
-  logs, error text, or standard values such as HTTP methods and date layouts. This is an
-  agent procedure, not a tutorial to explain to the user.
+  touches a string or number literal, including one already on the edited lines, even when
+  the user never mentions magic values, constants, or duplicate strings. Do this: after
+  every code edit, inventory the literals the change touches. Skip literals in tests,
+  imports, comments, and generated code. Extract only when at least two of these are true —
+  multiple sites must stay identical, a typo would hide a bug, the literal hides its
+  meaning — and the sites must not diverge later. Prefer an existing constant. Do not
+  extract one-off logs, error text, or standard values such as HTTP methods and date
+  layouts. This is an agent procedure, not a tutorial to explain to the user.
 ---
 
 # 怎么处理硬编码值
 
 按这个顺序做。常量是为契约和含义付费，不是为重复付费。
 
-1. 盘点本次改动里的字符串和数字。排除测试、导入、注释、生成代码。
+1. 盘点本次改动碰到的字符串和数字，包括改动行上原来就有的。排除测试、导入、注释、生成代码。
 2. 对每个值做下面的判定。不通过就保持字面量。
 3. 通过后先找已有常量。能复用就复用，不新造名字。
 4. 没有可复用的，再按「放哪里、怎么命名」新增。默认只做高价值。
